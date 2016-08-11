@@ -27,8 +27,9 @@ module.exports = {
 				test: /\.(js|jsx)$/,
 				loader: 'babel',
 				query:{
-					preset:['es2015']
+					presets:['es2015','react']
 				},
+				include: __dirname,
 				exclude:/(node_modules|bower_components)/
 			},
 			{
@@ -44,7 +45,7 @@ module.exports = {
 				loader:'style-loader!css-loader!postcss-loader!less-loader'
 			},
 			{
-				test:/\.css$/
+				test:/\.css$/,
 				loader:'style-loader!css-loader!postcss-loader'
 			}
 		]
@@ -66,7 +67,7 @@ module.exports = {
     		new webpack.NoErrorsPlugin()
 	],
 	resolve:{
-		extensions:['','js','jsx']
+		extensions:['','.js','.jsx']
 	},
 	externals:{
     		"jwplayer" : "jwplayer",

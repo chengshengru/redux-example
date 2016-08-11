@@ -1,8 +1,9 @@
-import React,{render} from 'react';
+import React from 'react';
+import { render } from 'react-dom';
 
 
 render(
-	<div></div>,
+	<div>hehe </div>,
 	document.getElementById('app')
 );
 
