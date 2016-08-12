@@ -31,14 +31,29 @@ class Player extends Component{
 	}
 
 	componentDidUpdate(){
-		console.log('componentDidUpdate');
+		let player = this.player;
+		if(player){
+			let url = this.props.data.urls[0];
+			player.setup({
+				file:this.props.data.urls[0],
+				image:'http://upload.cankaoxiaoxi.com/2016/0808/1470616024923.jpg'
+			});
+			/*player.load([
+				{
+					file: url,
+					image:'http://upload.cankaoxiaoxi.com/2016/0808/1470616024923.jpg'
+				}
+			]);*/
+			player.play(true);
+		}else{
+			this.initPlayer();
+		}
+
 	}
 	shouldComponentUpdate(nextProps, nextState){
-		console.log('shouldComponentUpdate');
 		return true;
 	}
 	componentWillReceiveProps(nextProps){
-		console.log('componentWillReceiveProps');
 	}
 
 	componentDidMount() {
@@ -48,30 +63,24 @@ class Player extends Component{
 
 	initPlayer(){
 		let props = this.props;
-	    let data = this.props.data;
-	    if(typeof(data) !=='undefined'&&typeof(data.urls) !=='undefined'){
-	    	//初始化jwplayer
-		let dom = findDOMNode(this.refs.player);
-		dom.id = 'player_'+new Date().getTime()+""+parseInt(Math.random()*1000);
+	    	let data = this.props.data;
+	    	if( typeof(data) !=='undefined'&&typeof(data.urls) !=='undefined'){
+	    		//初始化jwplayer
+			let dom = findDOMNode(this.refs.player);
+			dom.id = 'player_'+new Date().getTime()+""+parseInt(Math.random()*1000);
 		
 		
-		if(!typeof(data.urls) === 'array'){
-		      throw new error("data.urls must be array");
-		}
+			if(!typeof(data.urls) === 'array'){
+		      		throw new error("data.urls must be array");
+			}
 		
-		let player = jwplayer(dom).setup({
-			file:this.props.data.urls[0],
-			image:'http://upload.cankaoxiaoxi.com/2016/0808/1470616024923.jpg'
-		});
-
-
-		
-		
-		
-		this.player = player;
-        
-        this.bindPlayEvent();
-	    }
+			let player = jwplayer(dom).setup({
+				file:this.props.data.urls[0],
+				image:'http://upload.cankaoxiaoxi.com/2016/0808/1470616024923.jpg'
+			});
+			this.player = player;
+        			this.bindPlayEvent();
+	    	}
 	}
 	
 	/**
@@ -79,33 +88,32 @@ class Player extends Component{
 	 */
 	bindPlayEvent(){
 	   
-	   let player = this.player;
+	 	let player = this.player;
 	   
-	   player.on('play',function(stateInfo){
-            this.props.notify && this.props.notify('play',this.props.data,stateInfo);
-        }.bind(this));
+	   	player.on('play',function(stateInfo){
+            			this.props.notify && this.props.notify('play',this.props.data,stateInfo);
+        		}.bind(this));
         
-       player.on('buffered',function(stateInfo){
-            this.props.notify && this.props.notify('play',this.props.data,stateInfo);
-        }.bind(this));
+       		player.on('buffered',function(stateInfo){
+            			this.props.notify && this.props.notify('play',this.props.data,stateInfo);
+        		}.bind(this));
         
         
-       player.on('end',function(stateInfo){
-            this.props.notify && this.props.notify('play',this.props.data,stateInfo);
-        }.bind(this));
+       		player.on('end',function(stateInfo){
+            			this.props.notify && this.props.notify('play',this.props.data,stateInfo);
+        		}.bind(this));
 	}
 	/**
 	 * 调整播放器大小
 	 */
-    resize(){
-        let player = this.player;
-        if(player){
-            
-            let { width , height } = this.props;
-            
-            player.resize(width, height);
-        }
-    }
+    	resize(){
+        		let player = this.player;
+        		if(player){
+            			let { width , height } = this.props;
+            			player.resize(width, height);
+        		}
+    	}
+
 	componentWillUnmount(){
 		if (this.player){
 			//移除播放器
@@ -114,13 +122,10 @@ class Player extends Component{
 	}
 
 
-	render() {
-	   
-	
+	render() {	
 		return (
 			<div className="player-container" >
-                <div ref="player"></div>
-                <div>测试</div>
+                			<div ref="player"></div>
 			</div>
 		);
 	}

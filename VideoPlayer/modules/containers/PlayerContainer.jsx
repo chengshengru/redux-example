@@ -28,15 +28,20 @@ class PlayerContainer extends Component{
 		dispatch(PlayerActions.play(data));
 	}
 
+	handlePause(){
+		this.props.dispatch(PlayerActions.pause());
+	}
+
 	render(){
 
 		const {data,actions}=this.props;
 		let play = this.doPlay.bind(this);
 		return (
 			<div>
-				<Player ref="player" data={data}/>
+				<Player ref="player" data={data.data}/>
 				{ data.time }
 				<button onClick={play}>Play</button>
+				<button onClick={this.handlePause.bind(this)}>Pause</button>
 			</div>
 		);
 	}
@@ -45,9 +50,7 @@ class PlayerContainer extends Component{
 //将state绑定到props上
 function mapStateToProps(state){
 	return  {
-		data:{
-			urls:['']
-		}
+		data:state.data
 	};
 }
 
