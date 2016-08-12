@@ -25,7 +25,7 @@ export const ACTION_STOP = 'ACTION_STOP';
  export function play(data){
  	return {
  			type : ACTION_PLAY,
- 			data:data
+ 		     data
  	};
  }
 

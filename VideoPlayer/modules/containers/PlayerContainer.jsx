@@ -1,4 +1,4 @@
-import React , { Component , PropTyps } from 'react';
+import React , { Component , PropTypes } from 'react';
 import Player from '../components/Player/Player';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -9,9 +9,6 @@ class PlayerContainer extends Component{
 
 
 	shouldComponentUpdate(nextProps, nextState){
-		console.log('Container shouldComponentUpdate');
-		console.log(nextProps);
-		console.log(nextState);
 		return true;
 	}
 
@@ -19,14 +16,12 @@ class PlayerContainer extends Component{
 	
 	}	
 
-componentDidUpdate(){
-	console.log("Container componentDidUpdate=============>");
-	console.log(this.props);
-	console.log("<<<<<<<<<Container componentDidUpdate=============>");
-}
+	componentDidUpdate(){
+	
+	}
+	
 	doPlay(){
 		const { dispatch } = this.props;
-		console.log(this.props);
 		let data = {
 			urls:['http://58.20.179.36/v.cctv.com/flash/mp4video6/TMS/2011/01/05/cf752b1c12ce452b3040cab2f90bc265_h264818000nero_aac32-1.mp4?wsiphost=local']
 		}
@@ -36,13 +31,11 @@ componentDidUpdate(){
 	render(){
 
 		const {data,actions}=this.props;
-		console.log("Container=============>");
-		console.log(data);
-		console.log("<<<<<<<<<Container=============>");
 		let play = this.doPlay.bind(this);
 		return (
 			<div>
 				<Player ref="player" data={data}/>
+				{ data.time }
 				<button onClick={play}>Play</button>
 			</div>
 		);
@@ -51,7 +44,11 @@ componentDidUpdate(){
 
 //将state绑定到props上
 function mapStateToProps(state){
-	return  Object.assign({}, state,{data:{}})
+	return  {
+		data:{
+			urls:['']
+		}
+	};
 }
 
 

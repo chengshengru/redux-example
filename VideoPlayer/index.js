@@ -5,8 +5,6 @@ import PlayerContainer from './modules/containers/PlayerContainer';
 import configureStore from './modules/stores/configureStore';
 
 const store = configureStore();
-console.log('=======>>>>>>>');
-console.log(store);
 render(
 	<Provider store={store}>
 		<PlayerContainer />

@@ -5,10 +5,6 @@ let defaultState = {
 	}
 };
 export default function doPlayerAction(state=defaultState,action){
-	console.log('=============>');
-	console.log(action);
-	console.log(state);
-	console.log('<=============');
 	switch(action.type){
 		case ACTION_PLAY:
 			return Object.assign({},state,{data:action.data,time:new Date().getTime()});

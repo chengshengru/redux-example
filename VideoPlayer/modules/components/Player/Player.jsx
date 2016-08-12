@@ -30,17 +30,11 @@ class Player extends Component{
 		super(props);
 	}
 
-	componentWillUpdate(){
-		console.log('componentWillUpdate');
-		this.initPlayer();
-	}
 	componentDidUpdate(){
 		console.log('componentDidUpdate');
 	}
 	shouldComponentUpdate(nextProps, nextState){
 		console.log('shouldComponentUpdate');
-		console.log(nextProps);
-		console.log(nextState);
 		return true;
 	}
 	componentWillReceiveProps(nextProps){
@@ -53,9 +47,7 @@ class Player extends Component{
 
 
 	initPlayer(){
-		console.log('initPlayer');
 		let props = this.props;
-	    console.log(props);
 	    let data = this.props.data;
 	    if(typeof(data) !=='undefined'&&typeof(data.urls) !=='undefined'){
 	    	//初始化jwplayer
@@ -124,7 +116,6 @@ class Player extends Component{
 
 	render() {
 	   
-	   console.log("render========>");
 	
 		return (
 			<div className="player-container" >
