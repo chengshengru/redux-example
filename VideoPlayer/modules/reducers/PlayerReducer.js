@@ -9,7 +9,8 @@ export default function doPlayerAction(state=defaultState,action){
 		case ACTION_PLAY:
 			return Object.assign({},state,{data:action.data});
 		case ACTION_PAUSE:
-			return  Object.assign({},state,{isPause:true});
+			let info= Object.assign({},state.data,{action:'pause'});
+			return  Object.assign({},state,{data:info});
 		default:
 			return state;
 	}

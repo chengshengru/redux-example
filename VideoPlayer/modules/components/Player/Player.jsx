@@ -33,24 +33,33 @@ class Player extends Component{
 	componentDidUpdate(){
 		let player = this.player;
 		if(player){
-			let url = this.props.data.urls[0];
-			player.setup({
-				file:this.props.data.urls[0],
-				image:'http://upload.cankaoxiaoxi.com/2016/0808/1470616024923.jpg'
-			});
-			/*player.load([
+			let action = this.props.data.action;
+			if(action){
+				if(action === 'pause'){
+					player.pause();
+				}
+			}else{
+				let url = this.props.data.urls[0];
+				player.setup({
+					file:this.props.data.urls[0],
+					image:'http://upload.cankaoxiaoxi.com/2016/0808/1470616024923.jpg'
+				});
+				/*player.load([
 				{
 					file: url,
 					image:'http://upload.cankaoxiaoxi.com/2016/0808/1470616024923.jpg'
 				}
-			]);*/
-			player.play(true);
+				]);*/
+				player.play(true);
+			}
+
 		}else{
 			this.initPlayer();
 		}
 
 	}
 	shouldComponentUpdate(nextProps, nextState){
+		console.log(nextState);
 		return true;
 	}
 	componentWillReceiveProps(nextProps){
