@@ -13,7 +13,9 @@ app.use(express.static(__dirname+"lib"))
 app.get("/", function(req, res) {
   res.sendFile(__dirname + '/index.html')
 })
-
+app.get("/about", function(req, res) {
+  res.sendFile(__dirname + '/index.html')
+})
 
 
 app.get("/lib/jwplayer/jwplayer.js", function(req, res) {
